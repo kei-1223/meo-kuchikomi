@@ -11,22 +11,24 @@
   .wrap{max-width:720px;margin:0 auto;padding:0 16px 48px}
   h1{font-size:18px;color:var(--navy);margin:0 0 6px}
   .lead{font-size:13px;color:var(--muted);line-height:1.7;margin:0 0 16px}
-  .acts{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+  .wrap > .no-print > .acts{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .btn{border:0;border-radius:999px;padding:11px 16px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;line-height:1}
   .btn.primary{background:var(--navy);color:#fff}.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
   .steps{background:#fff;border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.8;margin-top:18px}
   .steps b{color:var(--navy)}
-  header.top{background:var(--navy);color:#fff;padding:16px 20px;margin:0 -16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  header.top{background:var(--navy);color:#fff;padding:14px 16px;margin:0 -16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  header.top .who{min-width:0}
   header.top .svc{font-size:11px;opacity:.75;letter-spacing:.06em}
-  header.top h1{font-size:18px;margin:2px 0 0;font-weight:700;color:#fff}
-  header.top a{color:#fff;opacity:.85;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+  header.top h1{font-size:17px;margin:2px 0 0;font-weight:700;color:#fff;line-height:1.3}
+  header.top .acts{display:flex;align-items:center;gap:10px;flex:none}
+  header.top a{color:#fff;font-size:12px;text-decoration:none}
+  header.top a.survey{font-weight:700;border:1.5px solid rgba(255,255,255,.85);border-radius:999px;padding:7px 12px;white-space:nowrap}
+  header.top a.out{opacity:.85;text-decoration:underline;text-underline-offset:3px}
+  @media (max-width:520px){header.top .dev{display:none}}
   .dev{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
-  .tabs{display:flex;align-items:stretch;justify-content:space-between;gap:12px;background:#fff;margin:-20px -16px 18px;padding:0 16px;border-bottom:1px solid var(--line)}
-  .tabnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-  .tabnav::-webkit-scrollbar{display:none}
-  .tabnav a{display:block;padding:13px 12px 11px;font-size:13.5px;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:2.5px solid transparent;white-space:nowrap}
+  .tabnav{display:flex;background:#fff;margin:0 -16px 18px;border-bottom:1px solid var(--line)}
+  .tabnav a{flex:1;text-align:center;padding:13px 6px 11px;font-size:13.5px;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:2.5px solid transparent;white-space:nowrap}
   .tabnav a.on{color:var(--navy);border-bottom-color:var(--navy)}
-  .tabact{align-self:center;flex:none;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:6px 12px;white-space:nowrap}
 
   /* ===== L判カード（89mm × 127mm）===== */
   .card{width:89mm;height:127mm;background:#fff;margin:0 auto;padding:7mm 6mm 6mm;display:flex;flex-direction:column;align-items:center;text-align:center;
@@ -52,17 +54,14 @@
 <div class="wrap">
   <div class="no-print">
     <header class="top">
-      <div><div class="svc">meo　ダッシュボード</div><h1>実家じまいの相談窓口</h1></div>
-      <div style="display:flex;align-items:center;gap:10px"><a href="/shop/">ログアウト</a><div class="dev">デモ・サンプルデータ</div></div>
-    </header>
-    <div class="tabs">
-      <nav class="tabnav">
-        <a href="/demo/">ダッシュボード</a>
-        <a href="/demo/qr/" class="on">QRカード</a>
-        <a href="/demo/all/">クチコミ一覧と集計</a>
-      </nav>
-      <a class="tabact" href="https://meo-kuchikomi.com/shop/jikka/survey" target="_blank">アンケートを開く</a>
-    </div>
+  <div class="who"><div class="svc">meo　店舗ページ（デモ）</div><h1>実家じまいの相談窓口</h1></div>
+  <div class="acts"><a class="survey" href="https://meo-kuchikomi.com/shop/jikka/survey" target="_blank">アンケートを開く</a><a class="out" href="/shop/">ログアウト</a><div class="dev">デモ・サンプルデータ</div></div>
+</header>
+<nav class="tabnav">
+  <a href="/demo/" class="">ダッシュボード</a>
+  <a href="/demo/qr/" class="on">QRカード</a>
+  <a href="/demo/all/" class="">一覧と集計</a>
+</nav>
     <h1>QRカード（写真L判サイズ）</h1>
     <p class="lead">このままL判の写真として印刷し、100円ショップの写真立てに入れてカウンターへ。<br>家のプリンタならL判用紙を選んで印刷、コンビニなら「画像で保存」した写真をネットプリントやアプリでL判印刷してください。</p>
     <div class="acts">
