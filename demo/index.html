@@ -78,10 +78,46 @@
 </nav>
 <div class="grid">
   <main>
-    <h2>未返信のクチコミ <span class="cnt zero" id="cnt">0</span></h2>
+    <h2>未返信のクチコミ <span class="cnt " id="cnt">3</span></h2>
     <div id="list">
       
-      <div class="empty"><b>未返信はありません</b>新しいクチコミが入ると、ここに表示されます。</div>
+      <div class="card un" id="c1">
+        <div class="meta"><span class="stars">★★★★★</span><span>K・T 様</span><span>2026-10-13</span></div>
+        <div class="body"><span class="hit">遠方</span>に住んでいて<span class="hit">実家の片付け</span>をどこから手を付ければいいか分からず相談しました。<span class="hit">費用</span>の内訳を先に出してくれて、片付けから<span class="hit">売却</span>まで<span class="hit">一括</span>でお願いできたのが助かりました。</div>
+        <button class="btn primary" onclick="draft(1,0)">AIで返信案を作る</button>
+        <div class="draft" id="d1">
+          <textarea id="t1"></textarea>
+          <div class="note">そのまま使っても、直してもOK。返信はお店の名前で投稿されます。<span class="ai" style="display:none" id="a1"></span></div>
+          <p class="linkrow"><a href="#" onclick="return draft(1, (window.v[1]||0)+1)">別の案を生成する</a></p>
+          <button class="btn primary" onclick="postReply(1)">この内容で返信する</button>
+        </div>
+      </div>
+      
+      <div class="card un" id="c2">
+        <div class="meta"><span class="stars">★★★★☆</span><span>S・M 様</span><span>2026-10-11</span></div>
+        <div class="body"><span class="hit">空き家</span>になった実家の相談で利用。<span class="hit">相続</span>の手続きのことまで<span class="hit">丁寧</span>に教えてもらえました。日程の調整に少し時間がかかりました。</div>
+        <button class="btn primary" onclick="draft(2,0)">AIで返信案を作る</button>
+        <div class="draft" id="d2">
+          <textarea id="t2"></textarea>
+          <div class="note">そのまま使っても、直してもOK。返信はお店の名前で投稿されます。<span class="ai" style="display:none" id="a2"></span></div>
+          <p class="linkrow"><a href="#" onclick="return draft(2, (window.v[2]||0)+1)">別の案を生成する</a></p>
+          <button class="btn primary" onclick="postReply(2)">この内容で返信する</button>
+        </div>
+      </div>
+      
+      <div class="card un" id="c3">
+        <div class="meta"><span class="stars">★★☆☆☆</span><span>H・O 様</span><span>2026-10-09</span></div>
+        <div class="body">見積もりの連絡が遅く、こちらから催促しました。対応自体は悪くなかったです。</div>
+        <button class="btn primary" onclick="draft(3,0)">AIで返信案を作る</button>
+        <div class="draft" id="d3">
+          <textarea id="t3"></textarea>
+          <div class="note">そのまま使っても、直してもOK。返信はお店の名前で投稿されます。<span class="ai" style="display:none" id="a3"></span></div>
+          <p class="linkrow"><a href="#" onclick="return draft(3, (window.v[3]||0)+1)">別の案を生成する</a></p>
+          <button class="btn primary" onclick="postReply(3)">この内容で返信する</button>
+        </div>
+      </div>
+      
+      
     </div>
     <p class="more"><a href="/demo/all/">すべてのクチコミと集計を見る</a></p>
   </main>
