@@ -46,10 +46,12 @@
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--navy-d);color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
   .toast.show{opacity:1}
   .ai{font-size:10px;color:var(--muted);margin-left:6px}
-  .subnav{display:flex;gap:6px;flex-wrap:wrap;margin:-6px 0 16px}
-  .subnav a,.subnav .here{font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:999px;text-decoration:none;white-space:nowrap}
-  .subnav a{color:var(--navy);background:#fff;border:1.5px solid var(--line)}
-  .subnav .here{background:var(--navy);color:#fff}
+  .tabs{display:flex;align-items:stretch;justify-content:space-between;gap:12px;background:#fff;margin:-20px -16px 18px;padding:0 16px;border-bottom:1px solid var(--line)}
+  .tabnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+  .tabnav::-webkit-scrollbar{display:none}
+  .tabnav a{display:block;padding:13px 12px 11px;font-size:13.5px;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:2.5px solid transparent;white-space:nowrap}
+  .tabnav a.on{color:var(--navy);border-bottom-color:var(--navy)}
+  .tabact{align-self:center;flex:none;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:6px 12px;white-space:nowrap}
   
   .qrcard{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(29,61,111,.06);text-align:center}
   .qrcard .qr{width:220px;height:220px;margin:6px auto 10px;padding:10px;background:#fff;border:1.5px solid var(--line);border-radius:12px}
@@ -70,12 +72,14 @@
   <div><div class="svc">meo　ダッシュボード（デモ）</div><h1>実家じまいの相談窓口</h1></div>
   <div style="display:flex;align-items:center;gap:10px"><a href="/shop/">ログアウト</a><div class="dev">デモ・サンプルデータ</div></div>
 </header>
-<nav class="subnav">
-  <span class="here">ダッシュボード</span>
-  <a href="/demo/qr/">QRカード</a>
-  <a href="/demo/all/">すべてのクチコミと集計</a>
-  <a href="https://meo-kuchikomi.com/shop/jikka/survey" target="_blank">アンケートを開く</a>
-</nav>
+<div class="tabs">
+  <nav class="tabnav">
+    <a href="/demo/" class="on">ダッシュボード</a>
+    <a href="/demo/qr/" class="">QRカード</a>
+    <a href="/demo/all/" class="">クチコミ一覧と集計</a>
+  </nav>
+  <a class="tabact" href="https://meo-kuchikomi.com/shop/jikka/survey" target="_blank">アンケートを開く</a>
+</div>
 <div class="grid">
   <main>
     <h2>未返信のクチコミ <span class="cnt " id="cnt">3</span></h2>
