@@ -172,7 +172,7 @@ function demoReply(id, variant){
   const card = document.getElementById("c"+id); if(!card) return "";
   const body = card.querySelector(".body").textContent.trim();
   const meta = card.querySelector(".meta").textContent;
-  const name = (meta.match(/([^\s]+) 様/)||[,"お客"])[1];
+  const name = ((meta.match(/([^\s★☆]+)\s*様/)||[,"お客"])[1]).replace(/[★☆]/g,"");
   const star = (meta.match(/★/g)||[]).length;
   const hit = DEMO_WORDS.find(w => body.includes(w));
   const first = name + "様、" + (variant%2 ? "このたびはご相談いただき、またクチコミまでありがとうございます。" : "ご相談とクチコミをありがとうございます。");
