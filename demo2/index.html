@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>撮影後アンケート｜ミータススタジオ</title>
+<style>
+  :root{
+    --navy:#1D3D6F; --navy-d:#14294D; --blue:#3B6FB6; --soft:#E9EEF6; --soft2:#F5F8FC;
+    --text:#1F2937; --muted:#5B677A; --line:#D9E0EA; --accent:#F06A3A; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--soft2);color:var(--text);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:500px;margin:0 auto;padding:0 16px 40px}
+  header{background:var(--navy);color:#fff;padding:18px 16px 16px;margin:0 -16px 18px;border-radius:0 0 18px 18px}
+  header .shop{font-size:12px;opacity:.8;letter-spacing:.04em}
+  header h1{font-size:19px;margin:4px 0 0;font-weight:700}
+  header .sec{font-size:12px;opacity:.85;margin-top:4px}
+  .q{background:#fff;border-radius:14px;padding:16px 14px 14px;margin-bottom:14px;box-shadow:0 1px 2px rgba(29,61,111,.06)}
+  .q h2{font-size:15px;margin:0 0 4px;color:var(--navy)}
+  .q .hint{font-size:11.5px;color:var(--muted);margin:0 0 10px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{appearance:none;border:1.5px solid var(--navy);background:#fff;color:var(--navy);
+    border-radius:999px;padding:9px 14px;font-size:14px;font-weight:700;line-height:1;cursor:pointer;
+    transition:background .12s,color .12s,transform .06s}
+  .tag:active{transform:scale(.97)}
+  .tag.on{background:var(--navy);color:#fff}
+  .tag.other{border-color:var(--line);color:var(--muted);background:var(--soft2)}
+  .tag.other.on{background:var(--muted);border-color:var(--muted);color:#fff}
+  .otherbox{display:none;margin-top:10px}
+  .otherbox.show{display:block}
+  .otherbox input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;
+    font-family:inherit;background:#fff}
+  .otherbox input:focus{outline:none;border-color:var(--blue)}
+  .btn{display:block;width:100%;border:0;border-radius:999px;padding:15px;font-size:16px;font-weight:700;
+    font-family:inherit;cursor:pointer;line-height:1}
+  .btn.primary{background:var(--navy);color:#fff}
+  .btn.primary:disabled{background:#B9C4D6;cursor:default}
+  .btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy);margin-bottom:10px}
+  .linkrow{text-align:center;margin:4px 0 14px}
+  .linkrow a{color:var(--navy);font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .linkrow .sep{color:var(--line);margin:0 10px}
+  .note{font-size:11.5px;color:var(--muted);text-align:center;margin:10px 0 0;line-height:1.6}
+  /* 下書き画面 */
+  #draft{display:none}
+  #draft.show{display:block}
+  #ask.hide{display:none}
+  .draftbox{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 2px rgba(29,61,111,.06)}
+  .draftbox h2{font-size:15px;margin:0 0 10px;color:var(--navy)}
+  textarea{width:100%;min-height:150px;border:1.5px solid var(--line);border-radius:10px;padding:12px;font-size:15px;
+    line-height:1.7;font-family:inherit;background:var(--soft2);resize:vertical}
+  textarea:focus{outline:none;border-color:var(--blue);background:#fff}
+  .picked{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .picked span{background:var(--soft);color:var(--navy);border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--navy-d);color:#fff;
+    padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="shop">ミータススタジオ</div>
+    <h1>撮影後アンケート</h1>
+    <div class="sec">タップするだけ。30秒で終わります</div>
+  </header>
+
+  <!-- ===== 質問 ===== -->
+  <section id="ask">
+    <div class="q" data-q="1" data-mode="single">
+      <h2>Q1. 撮影の内容</h2>
+      <p class="hint">1つ選んでください</p>
+      <div class="tags"></div>
+      <div class="otherbox"><input type="text" placeholder="一行だけ書いてください"></div>
+    </div>
+    <div class="q" data-q="2" data-mode="multi">
+      <h2>Q2. 来る前の不安</h2>
+      <p class="hint">当てはまるものを全部</p>
+      <div class="tags"></div>
+      <div class="otherbox"><input type="text" placeholder="一行だけ書いてください"></div>
+    </div>
+    <div class="q" data-q="3" data-mode="multi">
+      <h2>Q3. 来て良かったこと</h2>
+      <p class="hint">当てはまるものを全部</p>
+      <div class="tags"></div>
+      <div class="otherbox"><input type="text" placeholder="一行だけ書いてください"></div>
+    </div>
+    <div class="q" data-q="4" data-mode="single" data-noother="1">
+      <h2>Q4. また撮りたいですか</h2>
+      <p class="hint">1つ選んでください</p>
+      <div class="tags"></div>
+    </div>
+    <button class="btn primary" id="make" disabled>クチコミの下書きを作る</button>
+    <p class="note">お礼や割引はありません。文章はあとで自由に直せます。</p>
+  </section>
+
+  <!-- ===== 下書き ===== -->
+  <section id="draft">
+    <div class="draftbox">
+      <h2>クチコミの下書きができました</h2>
+      <div class="picked" id="picked"></div>
+      <textarea id="text"></textarea>
+      <p class="note" style="text-align:left;margin-top:8px">そのまま使っても、直してもOKです。</p>
+    </div>
+    <p class="linkrow"><a href="#" id="back">前の画面に戻る</a><span class="sep">｜</span><a href="#" id="again">別の文にする</a></p>
+    <button class="btn primary" id="post">本文をコピーして、クチコミ投稿画面へ</button>
+    <p class="note">お店のGoogleクチコミ画面が開くので、貼り付けて星を選んでください。<br>投稿はご自身のスマホからお願いします。</p>
+  </section>
+</div>
+<div class="toast" id="toast">文章をコピーしました</div>
+
+<script>
+// =====================================================================
+// お店ごとの設定は、この SHOP の中だけ書き換えれば動きます。
+//   name      ：画面に出る店名
+//   reviewUrl ：GoogleのクチコミURL（ビジネスプロフィール →「クチコミを依頼」で出るリンク）
+//   q1〜q4    ：タップするタグ。6〜7個まで。各問の最後に自動で「その他」が付きます
+//   say2/say3 ：タグを文章に溶かすときの言い回し（タグ名 → 文中の言い方）
+//   say4      ：Q4の答えで文末に足す一文
+//   verb      ：文の型（p1=「〜について相談しました。」など、店の業態に合わせる）
+// サーバー不要。このファイルをそのまま置くか、ブラウザで開くだけで動きます。
+// =====================================================================
+const SHOP = {
+  name: "ミータススタジオ",
+  // デモ用。本番はビジネスプロフィール「クチコミを依頼」のリンク（https://g.page/r/.../review）に差し替える
+  reviewUrl: "https://www.google.com/maps/search/?api=1&query=Me%2BSTUDIO+%E5%90%8D%E6%9D%B1%E5%8C%BA",
+  q1: ["マタニティフォト","ニューボーンフォト","お宮参り","ハーフバースデー","1歳のバースデー","七五三"],
+  q2: ["赤ちゃんが泣かないか","料金がいくらか","衣装の用意","どんな写真になるか","上の子も一緒に行けるか","撮影時間が長くないか"],
+  q3: ["子どもの扱いが上手","あやしながら撮ってくれた","衣装が選び放題","持ち込み自由","データの納品が早い","料金が分かりやすい"],
+  q4: ["次の記念日もお願いしたい","機会があれば","まだわからない"],
+  say4: {"次の記念日もお願いしたい":"次の記念日も、またこちらでお願いしたいです。","機会があれば":"機会があればまた撮ってもらいたいです。","まだわからない":""},
+  // 文章に溶かすときの言い回し
+  say2: {"赤ちゃんが泣かないか":"赤ちゃんが泣いてしまわないか","料金がいくらか":"料金がいくらかかるのか","衣装の用意":"衣装をどう用意するか",
+         "どんな写真になるか":"どんな写真になるのか","上の子も一緒に行けるか":"上の子も一緒に行けるのか","撮影時間が長くないか":"撮影時間が長くて子どもが持つか"},
+  say3: {"子どもの扱いが上手":"カメラマンさんが子どもの扱いに慣れていて","あやしながら撮ってくれた":"あやしながら自然な表情を撮ってくれて",
+         "衣装が選び放題":"衣装をたくさんの中から選べて","持ち込み自由":"お気に入りの小物を持ち込めて","データの納品が早い":"データの納品が早くて",
+         "料金が分かりやすい":"料金が分かりやすくて"},
+};
+
+const state = {1:new Set(),2:new Set(),3:new Set(),4:new Set(), other:{1:"",2:"",3:"",4:""}};
+let variant = 0;
+
+// タグを描く
+document.querySelectorAll(".q").forEach(q=>{
+  const n = +q.dataset.q, box = q.querySelector(".tags");
+  SHOP["q"+n].concat(q.dataset.noother ? [] : ["その他"]).forEach(label=>{
+    const b = document.createElement("button");
+    b.type="button"; b.className="tag"+(label==="その他"?" other":""); b.textContent=label;
+    b.onclick=()=>toggle(n,label,b,q);
+    box.appendChild(b);
+  });
+  const inp = q.querySelector("input"); if(inp) inp.oninput=e=>{state.other[n]=e.target.value.trim(); check();};
+});
+
+function toggle(n,label,btn,q){
+  const single = q.dataset.mode==="single";
+  if(label==="その他"){
+    btn.classList.toggle("on");
+    q.querySelector(".otherbox").classList.toggle("show", btn.classList.contains("on"));
+    if(!btn.classList.contains("on")){ state.other[n]=""; q.querySelector("input").value=""; }
+    else q.querySelector("input").focus();
+    check(); return;
+  }
+  if(single){
+    q.querySelectorAll(".tag:not(.other)").forEach(b=>b.classList.remove("on"));
+    state[n].clear();
+  }
+  btn.classList.toggle("on");
+  if(btn.classList.contains("on")) state[n].add(label); else state[n].delete(label);
+  check();
+}
+function answered(n){ return state[n].size>0 || state.other[n]!==""; }
+function check(){ document.getElementById("make").disabled = !(answered(1)&&answered(2)&&answered(3)&&answered(4)); }
+
+// ===== 下書きを作る（器なので定型の組み立て。本番はAIに置き換える） =====
+function join(arr, sep="、"){ return arr.join(sep); }
+function compose(v){
+  const p = [...state[1]][0] || state.other[1];
+  const fears = [...state[2]].map(x=>SHOP.say2[x]||x); if(state.other[2]) fears.push(state.other[2]);
+  const goods = [...state[3]].map(x=>SHOP.say3[x]||x); if(state.other[3]) goods.push(state.other[3]);
+  const o3 = state.other[3];
+  const F = fears.length ? join(fears.slice(0,2)) : "";
+  const G = goods.filter(g=>g!==o3).slice(0,2);
+  const Gtxt = G.length ? join(G) : "";
+  const tail = (o3 ? ensureEnd(o3) : "") + (SHOP.say4[[...state[4]][0]] || "");
+  const pats = [
+    ()=>`${p}で利用しました。${F?F+"が心配でしたが、":""}${Gtxt?Gtxt+"、":""}安心して撮影できました。${tail}`,
+    ()=>`${F?F+"が気になって、":""}${p}の撮影先を探していました。${Gtxt?Gtxt+"、":""}ここにお願いしてよかったです。${tail}`,
+    ()=>`${p}の撮影でお世話になりました。${Gtxt?Gtxt+"、":""}${F?"心配していた"+F+"も、気づいたら忘れていました。":""}${tail}`,
+  ];
+  return pats[v % pats.length]().replace(/、安心/,"、安心").replace(/。。/g,"。");
+}
+function ensureEnd(s){ s=s.trim(); return /[。！!？?]$/.test(s)?s:s+"。"; }
+
+function showDraft(){
+  document.getElementById("ask").classList.add("hide");
+  document.getElementById("draft").classList.add("show");
+  const pk = document.getElementById("picked"); pk.innerHTML="";
+  [1,2,3,4].forEach(n=>{ [...state[n]].forEach(x=>{const s=document.createElement("span");s.textContent=x;pk.appendChild(s);});
+    if(state.other[n]){const s=document.createElement("span");s.textContent="その他：" + state.other[n];pk.appendChild(s);} });
+  document.getElementById("text").value = compose(variant);
+  window.scrollTo(0,0);
+}
+document.getElementById("make").onclick=()=>{variant=0; showDraft();};
+document.getElementById("back").onclick=(e)=>{e.preventDefault(); document.getElementById("draft").classList.remove("show"); document.getElementById("ask").classList.remove("hide"); window.scrollTo(0,0);};
+document.getElementById("again").onclick=(e)=>{e.preventDefault(); variant++; document.getElementById("text").value=compose(variant);};
+async function copyText(){
+  const t=document.getElementById("text").value;
+  try{ await navigator.clipboard.writeText(t);}catch(e){ document.getElementById("text").select(); document.execCommand("copy"); }
+  const toast=document.getElementById("toast"); toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"),1500);
+}
+document.getElementById("post").onclick=async()=>{ await copyText(); setTimeout(()=>{ window.open(SHOP.reviewUrl,"_blank"); },600); };
+
+// ===== 画面撮影用：?s=filled / ?s=draft で状態を再現 =====
+const sp = new URLSearchParams(location.search).get("s");
+if(sp){
+  document.querySelectorAll(".tag").forEach(b=>b.style.transition="none");
+  const pre = {1:["1歳のバースデー"],2:["赤ちゃんが泣かないか","衣装の用意"],3:["あやしながら撮ってくれた","衣装が選び放題"],4:["次の記念日もお願いしたい"]};
+  document.querySelectorAll(".q").forEach(q=>{
+    const n=+q.dataset.q;
+    q.querySelectorAll(".tag").forEach(b=>{ if(pre[n].includes(b.textContent)) b.click(); });
+    if(n===3){ q.querySelector(".tag.other").click(); const i=q.querySelector("input"); i.value="上の子も一緒に写ってもらえた"; i.dispatchEvent(new Event("input")); i.blur(); }
+  });
+  if(sp==="draft") showDraft();
+}
+</script>
+</body>
+</html>
