@@ -3,27 +3,106 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
 <title>meo（ミオ）｜MEO伴走支援サービス</title>
+<meta name="description" content="meo（ミオ）は、Googleマップのクチコミを「お店が狙った言葉」で集め、返信の抜け漏れをなくすMEO伴走支援サービスです。お店専用のアンケートと返信ツール、月1回の打ち合わせで、クチコミ経営を実現します。">
 <style>
-  :root{--navy:#1D3D6F;--soft2:#F5F8FC;--text:#1F2937;--muted:#5B677A;--accent:#F06A3A}
-  html,body{margin:0;min-height:100%;background:var(--soft2);color:var(--text);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}
-  .page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box}
-  .box{width:100%;max-width:420px;background:#fff;border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 1px 2px rgba(29,61,111,.06)}
-  .brand{font-size:12px;color:var(--muted);letter-spacing:.08em}
-  h1{font-size:30px;margin:6px 0 4px;color:var(--navy);letter-spacing:.04em}
-  h1 small{font-size:13px;color:var(--muted);margin-left:6px;letter-spacing:0}
-  p{font-size:13.5px;line-height:1.8;color:var(--text);margin:14px 0 0}
-  .muted{color:var(--muted);font-size:12px}
-  .login{display:inline-block;margin-top:18px;padding:11px 22px;border-radius:999px;background:var(--navy);color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+  :root{--navy:#1D3D6F;--navy-d:#14294D;--soft:#E9EEF6;--soft2:#F5F8FC;--text:#1F2937;--muted:#5B677A;--line:#D9E0EA;--accent:#F06A3A}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--soft2);color:var(--text);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.8}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 56px}
+  header.top{background:var(--navy);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  header.top .in{max-width:860px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+  header.top .brand{font-size:22px;font-weight:800;letter-spacing:.04em}
+  header.top .brand small{font-size:11px;font-weight:400;opacity:.8;margin-left:8px;letter-spacing:.06em}
+  header.top a{color:#fff;font-size:13px;font-weight:700;text-decoration:none;border:1.5px solid rgba(255,255,255,.85);border-radius:999px;padding:7px 14px;white-space:nowrap}
+  .hero{padding:48px 0 28px}
+  .hero .svc{font-size:13px;color:var(--muted);letter-spacing:.06em;font-weight:700}
+  .hero h1{font-size:30px;line-height:1.4;color:var(--navy);margin:8px 0 14px}
+  .hero p{font-size:15.5px;margin:0;max-width:640px}
+  .hero .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .btn{display:inline-block;border-radius:999px;padding:12px 22px;font-size:14px;font-weight:700;text-decoration:none}
+  .btn.p{background:var(--navy);color:#fff}
+  .btn.g{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+  section{margin-top:40px}
+  h2{font-size:19px;color:var(--navy);margin:0 0 14px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:640px){.cards{grid-template-columns:1fr}.hero h1{font-size:25px}}
+  .card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(29,61,111,.06)}
+  .card .n{display:inline-block;background:var(--soft);color:var(--navy);font-weight:800;font-size:12px;border-radius:999px;padding:2px 10px;margin-bottom:8px}
+  .card h3{font-size:15px;margin:0 0 6px;color:var(--navy)}
+  .card p{font-size:13.5px;margin:0;color:var(--text)}
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:640px){.flow{grid-template-columns:1fr}}
+  .flow .card b{display:block;color:var(--navy);font-size:14px;margin-bottom:4px}
+  .ex{background:var(--soft);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:10px}
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.price{grid-template-columns:1fr}}
+  .price .v{font-size:26px;font-weight:800;color:var(--navy);line-height:1.2}
+  .price .v small{font-size:12px;font-weight:700;color:var(--muted);margin-left:4px}
+  .price ul{margin:8px 0 0;padding-left:18px;font-size:13px}
+  .note{font-size:12px;color:var(--muted);margin-top:8px}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--muted)}
+  footer b{color:var(--text)}
 </style>
 </head>
 <body>
-<div class="page"><div class="box">
-  <div class="brand">MEO伴走支援サービス</div>
-  <h1>meo<small>ミオ</small></h1>
-  <p class="muted">準備中です。</p>
-  <a class="login" href="/shop/">店舗ログイン</a>
-</div></div>
+<header class="top"><div class="in">
+  <div class="brand">meo<small>MEO伴走支援サービス</small></div>
+  <a href="/shop/">店舗ログイン</a>
+</div></header>
+<div class="wrap">
+
+<div class="hero">
+  <div class="svc">MEO伴走支援サービス　meo（ミオ）</div>
+  <h1>Googleマップのクチコミを、<br>お店が狙った言葉で集める。</h1>
+  <p>「親切でした」だけのクチコミは、件数が1つ増えるだけで、どの検索にも結びつきません。meoは、お店が「どんな言葉で見つけてほしいか」を先に決め、その言葉をお客様自身の言葉として集めます。これを毎月数字で見て回すことを、私たちは「クチコミ経営」と呼んでいます。</p>
+  <div class="acts">
+    <a class="btn p" href="/demo/">店舗ページのデモを見る</a>
+    <a class="btn g" href="/demo2/">アンケート画面のデモを見る</a>
+  </div>
+</div>
+
+<section>
+  <h2>ご提供内容</h2>
+  <div class="cards">
+    <div class="card"><div class="n">1</div><h3>専用アンケート生成</h3><p>お店の狙う言葉でタグを組んだ、お店専用のアンケート。お客様はタップするだけで、AIがクチコミの下書きを作ります。QRコードと掲示用カード付き。</p></div>
+    <div class="card"><div class="n">2</div><h3>抜け漏れをなくす返信ツール</h3><p>新着クチコミを一覧にして、未返信をゼロに。返信の下書きもここで作れます。どの言葉のクチコミが何件たまったかも毎月見られます。</p></div>
+    <div class="card"><div class="n">3</div><h3>月1回の打ち合わせ＋LINE相談</h3><p>仕組みを置いただけでは続きません。声かけが止まっていないかを毎月数字で確認し、翌月のアンケートの言葉を一緒に決めます。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>お客様側の流れ</h2>
+  <div class="flow">
+    <div class="card"><b>① タグをタップする</b>来店の目的・来る前の不安・実際に来て良かったこと・また利用したいか。4問すべてタップで答えられます。30秒で終わります。</div>
+    <div class="card"><b>② AIが下書きを作る</b>選んだ言葉を自然な文章にまとめます。そのまま使っても、自由に直してもかまいません。
+      <div class="ex">一人暮らしの部屋探しで利用しました。初期費用と審査が心配でしたが、返事が早く、条件に合う物件だけ絞ってくれて助かりました。</div></div>
+    <div class="card"><b>③ Googleに投稿する</b>本文をコピーして、お店のGoogleクチコミ画面へ。投稿はお客様ご自身のスマホから行います。お礼や割引はありません（Googleの決まりです）。</div>
+  </div>
+</section>
+
+<section>
+  <h2>料金</h2>
+  <div class="price">
+    <div class="card"><div class="n">クチコミ立ち上げ　最初の3ヶ月</div><div class="v">月 19,800円<small>税抜</small></div>
+      <ul><li>1ヶ月目：現況把握、プロフィールの基本設定、クチコミ収集の仕組みづくり</li><li>2ヶ月目：「投稿」を開始し、キャンペーン運用を開始</li><li>3ヶ月目：数字を見ながら改善し、自走に向けて引き継ぎ</li></ul>
+      <p class="note">専用アンケート・掲示用カード・返信ツール・投稿用画像（月2枚）・月1回の打ち合わせ＋LINE相談を含みます。</p></div>
+    <div class="card"><div class="n">4ヶ月目以降　ツール利用</div><div class="v">月 2,980円<small>税抜</small></div>
+      <ul><li>専用アンケートと返信ツールの継続利用</li><li>アンケートの言葉の入れ替え</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>お店の方へ</h2>
+  <p style="margin:0;font-size:14px">ご契約中のお店は、お渡しした店舗IDとパスワードで店舗ページにログインできます。未返信のクチコミへの返信、今月の数字、アンケートのQRカードの印刷はすべて店舗ページで行えます。</p>
+  <p style="margin:12px 0 0"><a class="btn g" href="/shop/">店舗ログイン</a></p>
+</section>
+
+<footer>
+  <b>運営</b>　NOW OR NEVER合同会社<br>
+  MEO伴走支援サービス meo（ミオ）　https://meo-kuchikomi.com/<br>
+  Googleビジネスプロフィールの運用は、お店から管理者権限をいただいた範囲で行います。オーナー権限はお預かりしません。
+</footer>
+</div>
 </body>
 </html>
